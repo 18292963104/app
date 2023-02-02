@@ -1,8 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
+import router from './router'
+import TypeNav from '../src/components/TypeNav'
+import store from '../src/store'
+import './mock/mockServe'
+import 'swiper/css/swiper.css'
+import Careousel from '../src/components/Carousel'
 
 Vue.config.productionTip = false
+Vue.component(TypeNav.name, TypeNav)
+Vue.component(Careousel.name, Careousel)
 
 new Vue({
   render: h => h(App),
+  router,
+  store
 }).$mount('#app')
