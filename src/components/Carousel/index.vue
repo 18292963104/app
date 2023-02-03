@@ -24,9 +24,6 @@ import Swiper from "swiper";
 export default {
   name: "Careousel",
   props: ["list"],
-  mounted(){
-    console.log('miliya--->', this.list);
-  },
   watch: {
     list: {
       immediate: true,
