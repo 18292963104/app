@@ -62,7 +62,12 @@
               </li>
             </ul>
           </div>
-          <Pagination />
+          <Pagination 
+          :pageNo ='searchParams.pageNo'
+          :pageSize = 'searchParams.pageSize'
+          :total = 'total'
+          :continues="5"
+          @getPageNo = getPageNo />
         </div>
       </div>
     </div>
@@ -72,7 +77,7 @@
 <script>
   import SearchSelector from './SearchSelector/SearchSelector'
   import Pagination from '../../components/Pagination'
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapState } from 'vuex';
   export default {
     name: 'Search',
 
@@ -108,7 +113,10 @@
       },
       arrowDirDown(){
         return this.searchParams.order.indexOf('asc') === -1
-      }
+      },
+      ...mapState({
+        total: state => state.search.searchList.total
+      })
     },
     methods: {
       getData(){
@@ -160,8 +168,14 @@
           newOrder = `${flag}:${'desc'}`
         }
         this.searchParams.order =  newOrder
+      },
+      getPageNo(no){
+        console.log(no);
+        this.searchParams.pageNo = no
+        this.getData();
       }
     },
+
     watch: {
       $route(newValue, oldValue){
         this.searchParams.category1Id = undefined

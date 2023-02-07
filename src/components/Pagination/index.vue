@@ -2,30 +2,34 @@
   <div class="fr page">
     <div class="sui-pagination clearfix">
       <ul>
-        <li class="prev disabled">
+        <li class="prev" v-if="pageNo !== 1" @click="$emit('getPageNo', pageNo - 1)">
           <a href="#">«上一页</a>
         </li>
-        <li class="active">
+        <li v-if="startNumendNum.start > 1" >
           <a href="#">1</a>
         </li>
         <li>
-          <a href="#">2</a>
+          <a href="#" v-if="startNumendNum.start > 2">...</a>
         </li>
-        <li>
-          <a href="#">3</a>
+        <li
+        v-for="(page, index) in startNumendNum.end"
+        :key="index" v-if="page >= startNumendNum.start"
+        :class="{ active: pageNo === page }"
+        @click="$emit('getPageNo', page)"
+        >
+          <a href="#">{{ page }}</a>
         </li>
-        <li>
-          <a href="#">4</a>
-        </li>
-        <li>
-          <a href="#">5</a>
-        </li>
-        <li class="dotted"><span>...</span></li>
-        <li class="next">
+
+        <li class="dotted" v-if="startNumendNum.end < totalPage" ><span>...</span></li>
+        <li
+        class="next"
+        v-if="startNumendNum.end < totalPage"
+        @click="$emit('getPageNo', pageNo + 1)"
+        >
           <a href="#">下一页»</a>
         </li>
       </ul>
-      <div><span>共10页&nbsp;</span></div>
+      <div><span>共{{ totalPage }}页&nbsp;</span></div>
     </div>
   </div>
 </template>
@@ -33,12 +37,42 @@
 <script>
 export default {
   name: "Pagination",
+  props: ['pageNo', 'pageSize', 'total', 'continues', 'getPageNo'],
+  computed: {
+    totalPage() {
+        return Math.ceil(this.total/this.pageSize)
+    },
+    startNumendNum(){
+      const { continues, pageSize, totalPage, pageNo} = this
+      let start = 0, end = 0;
+
+
+      if (continues > totalPage){
+          start = 1;
+          end = this.totalPage
+      } else {
+        start = pageNo - parseInt(continues / 2)
+        end = pageNo + parseInt(continues / 2)
+        if (start < 1) {
+          start = 1
+          end = continues
+        }
+        if (end >= totalPage) {
+          end = totalPage
+          start = pageNo - parseInt(continues / 2)
+        }
+      }
+      console.log('miliya-->', start, end );
+
+      return {start, end}
+    }
+  }
 };
 </script>
 
 <style lang="less">
 .page {
-  width: 733px;
+  width: 900px;
   height: 66px;
   overflow: hidden;
   float: right;
@@ -50,7 +84,7 @@ export default {
       margin-left: 0;
       margin-bottom: 0;
       vertical-align: middle;
-      width: 490px;
+      width: 650px;
       float: left;
 
       li {

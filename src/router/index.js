@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from "../pages/Register";
 import Search from '../pages/Search';
+import Detail from '../pages/Detail'
 
 let originPush = VueRouter.prototype.push;
 let originReplace = VueRouter.prototype.replace;
@@ -53,6 +54,12 @@ export default new VueRouter({
             component: Search,
             meta: {show: true},
             name: 'search'
+        },
+        {
+            path: '/detail:skuid',
+            component: Detail, 
+            meta: {show: false},
+            name: 'detail'
         },
         {
             path: '/',
