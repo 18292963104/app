@@ -8,3 +8,7 @@ export const  reqGetBannerlist = () => mockRequests.get('/banner')
 export const  reqGetFloorlist = () => mockRequests.get('/floor')
 
 export const reqGetSearchInfo = params => request({url:'/list', method: 'post', data: params})
+
+export const reqGoodInfo = (skuId) => request({url:`/item/${skuId}`, method: 'get'})
+
+export const reqAddOrUpdateShopCart = (skuId, skuNum) => request({url:`/cart/addToCart/${skuId}/${skuNum}`, method: 'post'})

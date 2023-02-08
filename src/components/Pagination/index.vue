@@ -62,7 +62,6 @@ export default {
           start = pageNo - parseInt(continues / 2)
         }
       }
-      console.log('miliya-->', start, end );
 
       return {start, end}
     }
