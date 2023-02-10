@@ -3,8 +3,15 @@ import Login from '../pages/Login';
 import Register from "../pages/Register";
 import Search from '../pages/Search';
 import Detail from '../pages/Detail'
+import ShopCart from '../pages/ShopCart'
 
 export default [
+    {
+        path: '/shopcart',
+        component: ShopCart, 
+        meta: {show: true},
+        name: 'shopcart'
+    },
     {
         path: '/home',
         component: Home, 

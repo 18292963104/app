@@ -1,7 +1,9 @@
 import { reqGoodInfo, reqAddOrUpdateShopCart} from "@/api"
+import { getUUID } from "@/utils/uuid_token";
 
 const state = {
-    goodInfo: {}
+    goodInfo: {},
+    uuid_token: getUUID()
 }
 const mutations = {
     GETGOODINFO(state, goodInfo){
@@ -18,7 +20,9 @@ const actions = {
     async addOrUpdateShopCart({commit}, {skuId, skuNum}){
         let res = await reqAddOrUpdateShopCart(skuId, skuNum)
         if (res.code === 200) {
-            console.log('save data success');
+            return console.log('save data success');
+        } else {
+            return Promise.reject(new Error('reject'))
         }
     },
 }

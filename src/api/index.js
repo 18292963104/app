@@ -12,3 +12,9 @@ export const reqGetSearchInfo = params => request({url:'/list', method: 'post', 
 export const reqGoodInfo = (skuId) => request({url:`/item/${skuId}`, method: 'get'})
 
 export const reqAddOrUpdateShopCart = (skuId, skuNum) => request({url:`/cart/addToCart/${skuId}/${skuNum}`, method: 'post'})
+
+export const requestCartList = () => request({url:'/cart/cartList', method: 'get'})
+
+export const requestDeleteCart = (skuId) => request({url:`cart/deleteCart/${skuId}`, method: 'delete'})
+
+export const requpdateCartList = (skuId, isChecked) => request({url:`cart/checkCart/${skuId}/${isChecked}`, method: 'delete'})
