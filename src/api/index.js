@@ -17,4 +17,18 @@ export const requestCartList = () => request({url:'/cart/cartList', method: 'get
 
 export const requestDeleteCart = (skuId) => request({url:`cart/deleteCart/${skuId}`, method: 'delete'})
 
-export const requpdateCartList = (skuId, isChecked) => request({url:`cart/checkCart/${skuId}/${isChecked}`, method: 'delete'})
+export const requpdateCartList = (skuId, isChecked) => request({url:`cart/checkCart/${skuId}/${isChecked}`, method: 'get'})
+
+export const reqVerifyCode = (phone) => request({url:`/user/passport/sendCode/${phone}`, method: 'get'})
+
+export const reqRegisterUser = (data) => request({url:`/user/passport/register`, method: 'post', data})
+
+export const reqLogin = (data) => request({url: '/user/passport/login', method: 'post', data})
+
+export const reqUserInfo = () => request({url: '/user/passport/auth/getUserInfo', method: 'get'})
+
+export const reqLogOut = () => request({url: '/user/passport/logout', method: 'get'})
+
+export const reqGetUserAdd = () => request({url: '/user/userAddress/auth/findUserAddressList', method: 'get'})
+
+export const reqGetTradeOrder = () => request({url: '/order/auth/trade', method: 'get'})

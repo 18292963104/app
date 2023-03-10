@@ -4,8 +4,15 @@ import Register from "../pages/Register";
 import Search from '../pages/Search';
 import Detail from '../pages/Detail'
 import ShopCart from '../pages/ShopCart'
+import Trade from '../pages/Trade'
 
 export default [
+    {
+        path: '/trade',
+        component: Trade, 
+        meta: {show: true},
+        name: 'trade'
+    },
     {
         path: '/shopcart',
         component: ShopCart, 

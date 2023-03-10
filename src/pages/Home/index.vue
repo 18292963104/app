@@ -23,7 +23,7 @@ export default {
     name: '',
     components: { ListContainer, Recommend, Rank, like, Floor, Brand },
     mounted(){
-        this.$store.dispatch('floorList')
+      this.$store.dispatch('floorList')
     },
     computed: {
         ...mapState({

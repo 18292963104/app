@@ -21,7 +21,7 @@
               type="checkbox"
               name="chk_list"
               :checked="cart.isChecked === 1"
-              @change="updateCartList(card.id, $event.target.checked)"
+              @change="updateCartList(cart.skuId, $event.target.checked)"
             />
           </li>
           <li class="cart-list-con2">
@@ -69,7 +69,7 @@
         <span>全选</span>
       </div>
       <div class="option">
-        <a href="#none">删除选中的商品</a>
+        <a href="#none" @click="deleteAllChecked">删除选中的商品</a>
         <a href="#none">移到我的关注</a>
         <a href="#none">清除下柜商品</a>
       </div>
@@ -80,7 +80,7 @@
           <i class="summoney">{{ totalPrice }}</i>
         </div>
         <div class="sumbtn">
-          <a class="sum-btn" href="###" target="_blank">结算</a>
+          <router-link class="sum-btn" to="./trade">结算</router-link>
         </div>
       </div>
     </div>
@@ -170,17 +170,25 @@ export default {
       } catch (error) {
         console.log('some erroe happen');
       }
-    }
     },
     async updateCartList(skuId, checked){
       const isChecked = checked ? 1 : 0
       try {
-        await this.$store.dispatch('updateCartList', skuId, isChecked)
+        await this.$store.dispatch('updateCartList', {skuId, isChecked})
         this.getData()
       } catch (error) {
         console.log('some erroe happen');
       }
+    },
+    async deleteAllChecked(){
+      try {
+        await this.$store.dispatch('deleteAllChecked')
+        this.getData()
+      } catch (error) {
+        console.log('error happened');
+      }
     }
+  },
 };
 </script>
 

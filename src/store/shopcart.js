@@ -28,8 +28,15 @@ const actions = {
         if (res.code === 200) {
            return console.log('success');
         }else{
-            return Promise.reject(new Error('reject'))
+           return Promise.reject(new Error('reject'))
         }
+    },
+    deleteAllChecked({dispatch, getters}){
+        let promiseArr = []
+        getters.cartList.forEach(item => {
+            item.isChecked === 1 ? promiseArr.push(dispatch('deleteCart', item.skuId)) : ''
+        });
+        return Promise.all(promiseArr)
     }
 }
 const getters = {
