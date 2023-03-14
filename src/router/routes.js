@@ -5,8 +5,15 @@ import Search from '../pages/Search';
 import Detail from '../pages/Detail'
 import ShopCart from '../pages/ShopCart'
 import Trade from '../pages/Trade'
+import Pay from '../pages/Pay'
 
 export default [
+    {
+        path: '/pay',
+        component: Pay, 
+        meta: {show: true},
+        name: 'pay'
+    },
     {
         path: '/trade',
         component: Trade, 

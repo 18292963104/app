@@ -53,7 +53,11 @@ router.beforeEach(async (to, from, next ) => {
             } 
         }
     } else {
-        next()
+        if (['/trade', '/pay', '/paysuccess', '/center'].includes(to.path)) {
+            next('/login')
+        } else {
+            next()
+        }
     }
 })
 

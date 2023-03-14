@@ -6,6 +6,7 @@ import store from '../src/store'
 import './mock/mockServe'
 import 'swiper/css/swiper.css'
 import Careousel from '../src/components/Carousel'
+import * as API from '@/api'
 
 Vue.config.productionTip = false
 Vue.component(TypeNav.name, TypeNav)
@@ -15,6 +16,7 @@ new Vue({
   render: h => h(App),
   beforeCreate(){
     Vue.prototype.$bus = this
+    Vue.prototype.$API = API
   },
   router,
   store
