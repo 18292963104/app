@@ -7,10 +7,18 @@ import './mock/mockServe'
 import 'swiper/css/swiper.css'
 import Careousel from '../src/components/Carousel'
 import * as API from '@/api'
+import VueLazyload from 'vue-lazyload'
+import VeeValidate from 'vee-validate'
+import loading from './assets/logo.png'
+import zh_CN from 'vee-validate/dist/locale/zh_CN'
 
 Vue.config.productionTip = false
 Vue.component(TypeNav.name, TypeNav)
 Vue.component(Careousel.name, Careousel)
+Vue.use(VueLazyload, {
+  loading: loading
+})
+Vue.use(VeeValidate)
 
 new Vue({
   render: h => h(App),
